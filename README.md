@@ -22,3 +22,6 @@ Note: To understand PINs:
 3-http://www.learningaboutelectronics.com/Articles/HD44780-LCD-read-write-RW-pin
 4-http://www.learningaboutelectronics.com/Articles/HD44780-LCD-register-select-RS-pin
 5-http://www.learningaboutelectronics.com/Articles/HD44780-LCD-clock-enable-pin
+
+# Frequencymeter Design Circuit
+![image](https://user-images.githubusercontent.com/71434378/176165366-e8c686ea-e450-42ad-a4ce-3afc61f51e7b.png)
