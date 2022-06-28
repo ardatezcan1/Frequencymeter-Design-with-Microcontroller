@@ -24,6 +24,6 @@ Note: To understand PINs:
 5-http://www.learningaboutelectronics.com/Articles/HD44780-LCD-clock-enable-pin
 
 # Frequencymeter Design Circuit
-![image](https://user-images.githubusercontent.com/71434378/176165366-e8c686ea-e450-42ad-a4ce-3afc61f51e7b.png)
-![image](https://user-images.githubusercontent.com/71434378/176167215-ce15d7c0-883c-452b-a6e2-8128a3ad07c0.png)
+![image](https://user-images.githubusercontent.com/71434378/176167277-5a166a3f-9acd-4783-b08a-3d8b32950b33.png)
+
 
