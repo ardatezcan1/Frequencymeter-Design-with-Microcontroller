@@ -1,6 +1,6 @@
 #include<reg52.h>
 
-sfr lveri = 0x90;						//LCD Pinleri
+sfr lveri = 0x90;						//LCD Data Pins
 sbit rs	= P3^2;
 sbit rw	= P3^1;
 sbit en	= P3^0;
@@ -17,15 +17,15 @@ void inttoLCD(unsigned int);
 
 void main(void)
 	{
-	 unsigned int HI, LO, TOPLAM; //Frekans degerlerini tutmak icin
-	 unsigned char l, OV, MSJ[16] = "Sinir disinda...";
+	 unsigned int HI, LO, TOPLAM; //To keep frequency values
+	 unsigned char l, OV, MSJ[16] = "Out of Range";
 	 OV = 0;
 	 T0 = 1;
 	 TMOD = 0x05;
 	 TL0 = 0;
 	 TL1 = 0;
 	 lcdinit();
-	 while(1)// Burada girilen frekansin buyuklugune gore siniflandirma yapilmistir
+	 while(1)// Classification is made according to the size of the frequency entered here.
 	 	{
 		 do
 		 	{
@@ -69,16 +69,16 @@ start: TR0 = 1;
 		}
 	}
 
-void lcdinit(void)//Raporda da(Cizelge 1.1) verilen girislere gore olusacak fonksiyonlar
+void lcdinit(void)
 	{
-	 lcdkomut(0x38);//2 satirlik 5x7'lik matris
-	 lcdkomut(0x0C);//Goruntuleme acik
-	 lcdkomut(0x01);//Goruntu ekranini temizleme
-	 lcdkomut(0x80);//Ilk satirdan baslamsi icin imleci ayarlama
-	 lcdkomut(0x06);//Imlec konumunu bir arttirma
+	 lcdkomut(0x38);//2 line 5x7 matrix
+	 lcdkomut(0x0C);//Display on
+	 lcdkomut(0x01);//Cleaning the display screen
+	 lcdkomut(0x80);//Setting the cursor to start from the first line
+	 lcdkomut(0x06);//Increment the cursor position by one
 	}
 	
-void lcdkomut(unsigned char deger)//lcdinit fonksiyonundaki islemlerin yapilabilmesi için rs ve rw degerleri ayarlandi
+void lcdkomut(unsigned char deger)//rs and rw values have been adjusted so that operations in the lcdinit function can be performed.
 	{
 	 lcdready();
 	 lveri = deger;
@@ -92,7 +92,7 @@ void lcdkomut(unsigned char deger)//lcdinit fonksiyonundaki islemlerin yapilabil
 void lcdveri(unsigned char deger)
 	{
 	 lcdready();
-	 lveri = deger;//Degerler pinlere yuklenir
+	 lveri = deger;//Values are loaded on pins
 	 rs = 1;
 	 rw = 0;
 	 en = 1;								
@@ -100,7 +100,7 @@ void lcdveri(unsigned char deger)
 	 en = 0;
 	}
 
-void lcdready()//Bayraklari okuma ve adresleri sayma
+void lcdready()//Reading flags and counting addresses
 	{
 	 busy = 1;
 	 rs = 0;
@@ -115,7 +115,7 @@ void lcdready()//Bayraklari okuma ve adresleri sayma
 	 return;
 	}
 
-void inttoLCD(unsigned int deger)//Gelen degerlerin formatini ASCII tablosundaki degerlerini bulup LCD'e yazdirilmasi. Her seferinde +48 eklenemsi ASCII tablosunda sayilarin 48'den sonra baslamasidir
+void inttoLCD(unsigned int deger)//Finding the format of the incoming values and their values in the ASCII table and printing them on the LCD. Adding +48 each time is the number starting after 48 in the ASCII table.
 	{
 	 unsigned int x, y, z, d[5];
 	 char l;
@@ -193,7 +193,7 @@ void inttoLCD(unsigned int deger)//Gelen degerlerin formatini ASCII tablosundaki
 		}
 	 }
 
-	void MSDelay(unsigned int deger)	//Gecikmeyi ayarlamak icin
+	void MSDelay(unsigned int deger)	//To set the delay
 	{
 	 unsigned int x,y;
 	 for(x = 0; x < deger; x++)
